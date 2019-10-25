@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  course: one
+  location: 
+  has_paid: false
+
+two:
+  student: two
+  course: two
+  location: 
+  has_paid: false
