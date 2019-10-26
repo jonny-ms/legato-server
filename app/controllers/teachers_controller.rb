@@ -11,6 +11,8 @@ class TeachersController < ApplicationController
     
     @teacher.save
 
+    session[:teacher_id] = teacher.id
+
     render json: @teacher, status: :created
   end
 
@@ -18,7 +20,7 @@ class TeachersController < ApplicationController
     
   private
     def teacher_params
-      params.permit(:first_name)
+      params.require(:teacher).permit(:first_name, :last_name :email, :password, :password_confirmation)
     end
 
   
