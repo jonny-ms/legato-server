@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   
     resources :teachers
     # resources :students, only: [:index]
+
+    resources :sessions, only: [:create]
   end
 end
