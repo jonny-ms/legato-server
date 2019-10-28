@@ -59,3 +59,10 @@ teacher3 = Teacher.create!({
   will_host: true,
   will_travel: true
 })
+
+course1 = Course.create!({
+  teacher_id: 1,
+  instrument: "Piano",
+  level: "Advance",
+  rate: 80
+})
