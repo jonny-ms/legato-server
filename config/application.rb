@@ -10,6 +10,9 @@ module LegatoServer
   class Application < Rails::Application
 
     config.api_only = true
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
     
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
@@ -17,11 +20,12 @@ module LegatoServer
     if Rails.env.development?
       config.middleware.insert_before 0, Rack::Cors do
         allow do
-          origins '*'
+          origins 'http://localhost:42317'
           resource(
             '*',
             headers: :any,
-            methods: [:get, :patch, :put, :delete, :post, :options]
+            methods: [:get, :patch, :put, :delete, :post, :options],
+            credentials: true
           )
         end
       end

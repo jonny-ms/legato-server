@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
-  
-  protect_from_forgery with: :exception
+
+  include ActionController::Cookies
+  # include ActionController::RequestForgeryProtection
+
+  # protect_from_forgery with: :exception
 
   private
 
@@ -18,6 +21,6 @@ class ApplicationController < ActionController::API
       redirect_to '/login' unless current_user
     end
     
-  end
+
 
 end
