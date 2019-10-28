@@ -1,9 +1,9 @@
 class TeachersController < ApplicationController
 
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.includes(:courses)
     
-    render json: @teachers, status: :ok
+    render json: @teachers.to_json(:include => :courses), status: :ok
   end
 
   def create

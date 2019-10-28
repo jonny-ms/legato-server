@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root to: 'teachers#index'
   
     resources :teachers
+    resources :courses
     # resources :students, only: [:index]
 
     resources :sessions, only: [:create]
