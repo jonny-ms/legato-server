@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     .try(:authenticate, params[:password])
 
     if teacher
+      p "I'm a teacher: #{teacher.id}"
       session[:teacher_id] = teacher.id
       session[:type] = "teacher"
       render json: {
@@ -17,6 +18,7 @@ class SessionsController < ApplicationController
         teacher: teacher
     }
     elsif student
+      p "I'm a student: #{student.id}"
       session[:student_id] = student.id
       session[:type] = "student"
       render json: {
