@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   scope '/api' do
     root to: 'teachers#index'
   
-    resources :teachers
-    # resources :students, only: [:index]
+    resources :teachers, only: [:index, :create]
+    resources :students, only: [:create]
+    resources :lessons, only: [:create]
 
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'

@@ -3,10 +3,11 @@ class TeachersController < ApplicationController
   def index
     @teachers = Teacher.all
 
-    p current_user
-    p session
-
     render json: @teachers, status: :ok
+  end
+
+  def show
+    @teacher = Teacher.find(/* teacher id */)
   end
 
   def create
@@ -16,15 +17,11 @@ class TeachersController < ApplicationController
       session[:teacher_id] = teacher.id
       session[:type] = "teacher"
 
-      p teacher.errors.full_messages
-      p session[:teacher_id]
-
       render json: teacher, status: :created
     else
       render json: { status: 401 }
     end
   end
-
 
     
   private
