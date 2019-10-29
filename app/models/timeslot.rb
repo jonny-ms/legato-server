@@ -1,4 +1,4 @@
 class Timeslot < ApplicationRecord
   belongs_to :teacher
-  belongs_to :lesson, optinal: true
+  belongs_to :lesson, optional: true
 end
