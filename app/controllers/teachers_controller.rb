@@ -7,7 +7,7 @@ class TeachersController < ApplicationController
   end
 
   def show
-    @teacher = Teacher.find(/* teacher id */)
+    # @teacher = Teacher.find(/* teacher id */)
   end
 
   def create
