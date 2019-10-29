@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        user: user
+        teacher: teacher
     }
     elsif student
       session[:student_id] = student.id
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        user: user
+        student: student
     }
     else
       render json: { status: 401 }
@@ -34,7 +34,11 @@ class SessionsController < ApplicationController
     session[:teacher_id] = nil
     session[:student_id] = nil
     session[:type] = nil
-    redirect_to '/'
+
+    render json: { 
+      status: :destroyed,
+      logged_in: :false
+    }
   end
   
 end
