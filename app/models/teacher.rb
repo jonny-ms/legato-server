@@ -1,6 +1,5 @@
 class Teacher < ApplicationRecord
   
-  # include ActiveModel::SecurePassword
   has_secure_password
 
   has_many :courses
