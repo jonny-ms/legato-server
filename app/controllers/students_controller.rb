@@ -8,6 +8,8 @@ class StudentsController < ApplicationController
     
     @student.save
 
+    session[:student_id] = student.id
+
     render json: @student, status: :created
   end
 
