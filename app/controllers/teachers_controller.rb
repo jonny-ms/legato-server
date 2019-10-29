@@ -2,7 +2,8 @@ class TeachersController < ApplicationController
 
   def index
     @teachers = Teacher.all
-
+    # current_user
+    # p @current_user
     render json: @teachers, status: :ok
   end
 
@@ -28,6 +29,5 @@ class TeachersController < ApplicationController
     def teacher_params
       params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
-
   
 end

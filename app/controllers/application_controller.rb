@@ -8,10 +8,11 @@ class ApplicationController < ActionController::API
   private
 
     def current_user
-      if session[:type] == "teacher"
+      if session[:teacher_id]
         @current_user = Teacher.find(session[:teacher_id])
+        puts "im a real boi!"
       end
-      if session[:type] == "student"
+      if session[:student_id]
         @current_user = Student.find(session[:student_id])
       end
     end
