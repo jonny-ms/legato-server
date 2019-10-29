@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   scope '/api' do
     root to: 'teachers#index'
   
-    resources :teachers, only: [:index, :create]
+    resources :teachers, only: [:index, :create, :show]
     resources :students, only: [:create]
     resources :lessons, only: [:create]
 

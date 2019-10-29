@@ -9,6 +9,10 @@ class TeachersController < ApplicationController
 
   def show
     # @teacher = Teacher.find(/* teacher id */)
+    temp = params[:id]
+    p temp
+    @timeslots = Timeslot.where(teacher_id: temp)
+    render json: @timeslots, status: :ok
   end
 
   def create
