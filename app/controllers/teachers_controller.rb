@@ -6,20 +6,27 @@ class TeachersController < ApplicationController
     render json: @teachers.to_json(:include => :courses), status: :ok
   end
 
-  def create
-    @teacher = Teacher.new(teacher_params)
-    
-    @teacher.save
-
-    render json: @teacher, status: :created
+  def show
+    # @teacher = Teacher.find(/* teacher id */)
   end
 
+  def create
+    teacher = Teacher.new(teacher_params)
+
+    if teacher.save
+      session[:teacher_id] = teacher.id
+      session[:type] = "teacher"
+
+      render json: teacher, status: :created
+    else
+      render json: { status: 401 }
+    end
+  end
 
     
   private
     def teacher_params
-      params.permit(:first_name)
+      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
-
   
 end
