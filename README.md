@@ -24,3 +24,9 @@ Things you may want to cover:
 - ...
 
 Cam-small change
+
+## To reset database, run:
+
+  rake db:migrate VERSION=0
+  rake db:migrate
+  rake db:seed

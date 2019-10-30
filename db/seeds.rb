@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 teacher1 = Teacher.create!({
   first_name: "Aaron",
   last_name: "Tagadtad",
@@ -45,7 +46,7 @@ teacher2 = Teacher.create!({
 teacher3 = Teacher.create!({
   first_name: "Cameron",
   last_name: "Dunner",
-  email: "c.dunner@gmail.com",
+  email: "c@gmail.com",
   password: "password",
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULV0WR0RJ-d3d1fbc800a9-512",
@@ -60,8 +61,30 @@ teacher3 = Teacher.create!({
   will_travel: true
 })
 
+student1 = Student.create!({
+  first_name: "steve",
+  last_name: "student",
+  email: "steve@test.com",
+  password: "12341234",
+  password_confirmation: "12341234",
+})
+
 course1 = Course.create!({
   teacher_id: 1,
+  instrument: "Piano",
+  level: "Advance",
+  rate: 80
+})
+
+course3 = Course.create!({
+  teacher_id: 3,
+  instrument: "Piano",
+  level: "Beginner",
+  rate: 60
+})
+
+course3 = Course.create!({
+  teacher_id: 3,
   instrument: "Piano",
   level: "Advance",
   rate: 80

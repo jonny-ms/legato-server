@@ -13,7 +13,14 @@ class TeachersController < ApplicationController
     temp = params[:id]
     # p temps
     @timeslots = Timeslot.where(teacher_id: temp)
-    render json: @timeslots, status: :ok
+
+
+
+    @course = Course.where(teacher_id: temp)
+    
+    
+    
+    render json: { timeslots: @timeslots, courses: @course}, status: :ok
   end
 
   def create

@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
     # TODO: Set 1 lesson for multiple timeslots if the timeslots are in a row
 
     lesson_params[:timeslots].each do |x|
+      
       @lesson = Lesson.new(student_id: session[:student_id], course_id: lesson_params[:course_id])
       @timeslot = Timeslot.find(x)
       @lesson.save
