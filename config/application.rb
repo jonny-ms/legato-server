@@ -17,11 +17,12 @@ module LegatoServer
     if Rails.env.development?
       config.middleware.insert_before 0, Rack::Cors do
         allow do
-          origins '*'
+          origins 'http://localhost:3000'
           resource(
             '*',
             headers: :any,
-            methods: [:get, :patch, :put, :delete, :post, :options]
+            methods: [:get, :patch, :put, :delete, :post, :options],
+            credentials: true
           )
         end
       end
