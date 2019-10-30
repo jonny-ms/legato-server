@@ -1,25 +1,32 @@
 class TeachersController < ApplicationController
 
   def index
-    @teachers = Teacher.all
+    @teachers = Teacher.includes(:courses)
     
-    render json: @teachers, status: :ok
+    render json: @teachers.to_json(:include => :courses), status: :ok
+  end
+
+  def show
+    # @teacher = Teacher.find(/* teacher id */)
   end
 
   def create
-    @teacher = Teacher.new(teacher_params)
-    
-    @teacher.save
+    teacher = Teacher.new(teacher_params)
 
-    render json: @teacher, status: :created
+    if teacher.save
+      session[:teacher_id] = teacher.id
+      session[:type] = "teacher"
+
+      render json: teacher, status: :created
+    else
+      render json: { status: 401 }
+    end
   end
-
 
     
   private
     def teacher_params
-      params.permit(:first_name)
+      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     end
-
   
 end
