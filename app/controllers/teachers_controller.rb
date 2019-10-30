@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
 
   def index
+    # Send a list of all the teachrs
     @teachers = Teacher.all
     # current_user
     # p @current_user
@@ -8,17 +9,19 @@ class TeachersController < ApplicationController
   end
 
   def show
-    # @teacher = Teacher.find(/* teacher id */)
+    # Send a specific teacher's calendar
     temp = params[:id]
-    p temp
+    # p temps
     @timeslots = Timeslot.where(teacher_id: temp)
     render json: @timeslots, status: :ok
   end
 
   def create
+    # Create a new teacher
     teacher = Teacher.new(teacher_params)
 
     if teacher.save
+      # Send info to say that teacher is logged in
       session[:teacher_id] = teacher.id
       session[:type] = "teacher"
 

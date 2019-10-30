@@ -10,10 +10,11 @@ class ApplicationController < ActionController::API
     def current_user
       if session[:teacher_id]
         @current_user = Teacher.find(session[:teacher_id])
-        puts "im a real boi!"
+        puts "I'm a teacher with id: #{session[:teacher_id]}"
       end
       if session[:student_id]
         @current_user = Student.find(session[:student_id])
+        puts "I'm a student with id: #{session[:student_id]}"
       end
     end
     helper_method :current_user
