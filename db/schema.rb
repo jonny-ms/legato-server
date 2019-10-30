@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2019_10_29_151106) do
 
   create_table "timeslots", force: :cascade do |t|
     t.bigint "teacher_id", null: false
-    t.bigint "lesson_id", null: false
+    t.bigint "lesson_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_booked"
