@@ -2,9 +2,9 @@ class TimeslotsController < ApplicationController
 
   def index
     # Send a teacher their calendar
-    p "teacher id: #{session[:teacher_id]}"
+    # p "teacher id: #{session[:teacher_id]}"
     @timeslots = Timeslot.where(teacher_id: session[:teacher_id])
-    p @timeslots
+    # p @timeslots
     
     render json: @timeslots, status: :ok
   end
@@ -15,6 +15,14 @@ class TimeslotsController < ApplicationController
     timeslot_params.each do |x|
       Timeslot.create(datetime: x, teacher_id: session[:teacher_id], is_booked: false)
     end
+  end
+
+  def destroy
+
+    p timeslot_params
+    
+    Timeslot.find(timeslot_params).destroy
+    
   end
 
   private
