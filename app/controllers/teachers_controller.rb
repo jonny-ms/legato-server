@@ -8,8 +8,8 @@ class TeachersController < ApplicationController
     # p @current_user
     # @teachers = Teacher.all
     @teachers = Teacher.includes(:courses)
-    @teachers_join_courses = Teacher.joins(:courses)
-    p @teachers_join_courses
+    # @teachers_join_courses = Teacher.joins(:courses)
+    # p @teachers_join_courses
     # p @teachers
     # render json: @teachers.to_json(:include => :courses), status: :ok
 
