@@ -3,10 +3,17 @@ class TeachersController < ApplicationController
   def index
     # Send a list of all the teachrs
     current_user
+    # p "current user"
+    # p current user
     # p @current_user
+    # @teachers = Teacher.all
     @teachers = Teacher.includes(:courses)
-    
-    render json: { teachers: @teachers, user: @current_user, type: @current_user.class.name}, status: :ok
+    @teachers_join_courses = Teacher.joins(:courses)
+    p @teachers_join_courses
+    # p @teachers
+    # render json: @teachers.to_json(:include => :courses), status: :ok
+
+    render json: { teachers: @teachers.to_json(include: :courses), user: @current_user, type: @current_user.class.name}, status: :ok
   end
 
   def show
@@ -15,12 +22,8 @@ class TeachersController < ApplicationController
     # p temps
     @timeslots = Timeslot.where(teacher_id: temp)
 
-
-
     @course = Course.where(teacher_id: temp)
-    
-    
-    
+
     render json: { timeslots: @timeslots, courses: @course}, status: :ok
   end
 
