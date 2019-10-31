@@ -2,9 +2,10 @@ class TeachersController < ApplicationController
 
   def index
     # Send a list of all the teachrs
-    @teachers = Teacher.all
     current_user
-    p @current_user
+    # p @current_user
+    @teachers = Teacher.includes(:courses)
+    
     render json: { teachers: @teachers, user: @current_user, type: @current_user.class.name}, status: :ok
   end
 
