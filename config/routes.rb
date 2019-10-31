@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root to: 'teachers#index'
   
     resources :teachers, only: [:index, :create, :show]
-    resources :students, only: [:show, :create]
+    resources :students, only: [:index, :create]
     resources :lessons, only: [:create]
 
     post '/login' => 'sessions#create'
