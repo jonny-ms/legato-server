@@ -18,13 +18,18 @@ class TeachersController < ApplicationController
 
   def show
     # Send a specific teacher's calendar
-    temp = params[:id]
-    # p temps
-    @timeslots = Timeslot.where(teacher_id: temp)
+    
+    @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
 
-    @course = Course.where(teacher_id: temp)
+    @course = Course.where(teacher_id: params[:id])
 
-    render json: { timeslots: @timeslots, courses: @course}, status: :ok
+    @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
+
+    # @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
+
+    # @lessons = Timeslot.where(lesson_id: @mylessons)
+
+    render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
   end
 
   def create
