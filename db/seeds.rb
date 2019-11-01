@@ -61,10 +61,55 @@ teacher3 = Teacher.create!({
   will_travel: true
 })
 
+teacher4 = Teacher.create!({
+  first_name: "Ahana",
+  last_name: "Ghosh",
+  email: "ahana@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULJU2F3CK-829836c2c0eb-512",
+  bio: "World renowned opera singer.",
+  address: {"street": "157 Dundas St W",
+            "city": "Toronto",
+            "country": "Canada"
+          },
+  postal_code: "M5E 1B4",
+  certifications: nil,
+  will_host: true,
+  will_travel: false
+})
+
+teacher5 = Teacher.create!({
+  first_name: "Gary",
+  last_name: "Chen",
+  email: "gary@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULUSMV18C-63b9a3c88c13-512",
+  bio: "Grammy award triangle player, worked on projects with Michael Jackson and Diana Ross",
+  address: {"street": "109 McCaul St",
+            "city": "Toronto",
+            "country": "Canada"
+          },
+  postal_code: "M5T 3K5",
+  certifications: nil,
+  will_host: false,
+  will_travel: true
+})
+
+
 student1 = Student.create!({
-  first_name: "steve",
+  first_name: "Steve",
   last_name: "student",
   email: "steve@test.com",
+  password: "12341234",
+  password_confirmation: "12341234",
+})
+
+student2 = Student.create!({
+  first_name: "Cindy",
+  last_name: "student",
+  email: "cindy@test.com",
   password: "12341234",
   password_confirmation: "12341234",
 })
@@ -95,4 +140,18 @@ course4 = Course.create!({
   instrument: "Flute",
   level: "Intermediate",
   rate: 95
+})
+
+course5 = Course.create!({
+  teacher_id: 4,
+  instrument: "Voice",
+  level: "Advance",
+  rate: 140
+})
+
+course6 = Course.create!({
+  teacher_id: 5,
+  instrument: "Percussion",
+  level: "Intermediate",
+  rate: 65
 })
