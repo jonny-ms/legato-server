@@ -2,11 +2,11 @@ class StudentsController < ApplicationController
 
   def index
 
-    @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
+    # @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
 
-    @lessons = Timeslot.where(lesson_id: @mylessons)
+    # @lessons = Timeslot.where(lesson_id: @mylessons)
     
-    render json: @lessons, status: :ok
+    # render json: @lessons, status: :ok
   end
 
   def create

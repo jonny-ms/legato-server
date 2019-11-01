@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
     resources :teachers, only: [:index, :create, :show]
     resources :students, only: [:index, :create]
-    resources :lessons, only: [:create]
+    resources :lessons, only: [:index, :create]
 
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
