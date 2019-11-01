@@ -1,12 +1,12 @@
 class TimeslotsController < ApplicationController
 
   def index
-    # Send a teacher their calendar
-    p "teacher id: #{session[:teacher_id]}"
+
+
     @timeslots = Timeslot.where(teacher_id: session[:teacher_id])
-    # p @timeslots
-    
+
     render json: @timeslots, status: :ok
+
   end
 
   def create
