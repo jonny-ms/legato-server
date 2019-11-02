@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :students, only: [:index, :create]
     resources :lessons, only: [:index, :create]
     resources :courses, only: [:index, :create, :update]
+    resources :videos, only: [:create]
 
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
