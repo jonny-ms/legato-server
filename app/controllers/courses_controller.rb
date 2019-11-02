@@ -11,4 +11,41 @@ class CoursesController < ApplicationController
     
   end
 
+  def create
+
+    course = Course.new(course_params) 
+    course.save
+    p course
+    @courses = Course.where(teacher_id: session[:teacher_id])
+    render json: @courses, status: :created
+    
+  end
+  
+  def update
+
+    @course = Course.find(params[:id])
+
+    @lessons = Lesson.where(course_id: @course.id).select(:id).distinct
+
+    @timeslots = Timeslot.where(lesson_id: @lessons)
+
+
+    now = Time.current
+
+
+    future_lessons = @timeslots.where("datetime < ?", now)
+    if future_lessons
+      render json: {status: 401}
+    else
+      @course.update(is_available: false)
+      render json: {status: 204}
+    end
+    
+  end
+
+  private
+    def course_params
+      params.require(:course).permit(:teacher_id, :instrument, :level, :rate)
+    end
+
 end

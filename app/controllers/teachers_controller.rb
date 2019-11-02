@@ -21,7 +21,7 @@ class TeachersController < ApplicationController
     
     @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
 
-    @courses = Course.where(teacher_id: params[:id])
+    @course = Course.where(teacher_id: params[:id], is_available: true)
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
@@ -30,6 +30,14 @@ class TeachersController < ApplicationController
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
     render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
+  end
+
+  def update
+
+    @teacher = Teacher.find(session[:teacher_id])
+    @teacher.update(update_params)
+
+    render json: {status: 204}
   end
 
   def create
@@ -47,10 +55,20 @@ class TeachersController < ApplicationController
     end
   end
 
+  def new
+
+    @teacher = Teacher.includes(:videos, :courses).find(session[:teacher_id])
+    
+    render json: @teacher.to_json(:include => [:videos, :courses]), status: :ok    
+    
+  end
     
   private
     def teacher_params
-      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio)
+    end
+    def update_params
+      params.require(:teacher).permit(:bio, :tagline)
     end
   
 end
