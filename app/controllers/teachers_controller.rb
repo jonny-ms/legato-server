@@ -21,7 +21,7 @@ class TeachersController < ApplicationController
     
     @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
 
-    @course = Course.where(teacher_id: params[:id])
+    @courses = Course.where(teacher_id: params[:id])
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
@@ -29,7 +29,7 @@ class TeachersController < ApplicationController
 
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
-    render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
+    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
   end
 
   def create

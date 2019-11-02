@@ -25,6 +25,27 @@ class LessonsController < ApplicationController
     
   end
 
+  def update
+    p params
+    @lesson = Lesson.find(params[:id])
+
+    @timeslots = Timeslot.where(lesson_id: @lesson)
+
+    p @timeslots
+
+    @timeslots.update(is_booked: true)
+  end
+
+  def destroy
+    @lesson = Lesson.find(params[:id])
+    @timeslots = Timeslot.where(lesson_id: @lesson)
+
+    @timeslots.each do |timeslot|
+      timeslot.update(lesson_id: nil)
+    end
+    
+    @lesson.destroy
+  end
 
     
   private
