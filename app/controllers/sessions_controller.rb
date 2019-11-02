@@ -1,5 +1,11 @@
 class SessionsController < ApplicationController
 
+  def index
+    current_user
+    render json: { 
+      user: @current_user, 
+      type: @current_user.class.name}, status: :ok
+  end
   
   def create
     teacher = Teacher.find_by_email(params[:email])
@@ -15,7 +21,8 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        teacher: teacher
+        teacher: true,
+        student: false
     }
     elsif student
       p "I'm a student: #{student.id}"
@@ -24,13 +31,15 @@ class SessionsController < ApplicationController
       render json: {
         status: :created,
         logged_in: true,
-        student: student
+        student: true,
+        teacher: false
     }
     else
       render json: { status: 401 }
     end
 
   end
+  
 
   def destroy
     session[:teacher_id] = nil

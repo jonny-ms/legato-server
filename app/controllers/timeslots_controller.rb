@@ -17,14 +17,12 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  def update
+  # def update
 
-    p timeslot_params
-
-    @timeslot = Timeslot.find(timeslot_params)
-    @timeslot.update(is_booked: true)
+  #   @timeslot = Timeslot.find(timeslot_params)
+  #   @timeslot.update(is_booked: true)
     
-  end
+  # end
 
   def destroy
 

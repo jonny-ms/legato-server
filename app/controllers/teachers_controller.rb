@@ -29,7 +29,7 @@ class TeachersController < ApplicationController
 
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
-    render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
+    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
   end
 
   def update
