@@ -25,11 +25,15 @@ class TeachersController < ApplicationController
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
+    @teachers = Teacher.where(id: params[:id])
+
+    puts @teachers
+
     # @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
 
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
-    render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
+    render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots), teachers: @teachers}, status: :ok
   end
 
   def create
