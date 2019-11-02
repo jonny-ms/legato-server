@@ -32,6 +32,16 @@ class TeachersController < ApplicationController
     render json: { timeslots: @timeslots, courses: @course, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
   end
 
+  def update
+    p update_params
+    p update_params[:bio]
+
+    @teacher = Teacher.find(session[:teacher_id])
+    @teacher.update(update_params)
+
+    render json: @teacher, status: :ok
+  end
+
   def create
     # Create a new teacher
     teacher = Teacher.new(teacher_params)
@@ -47,10 +57,20 @@ class TeachersController < ApplicationController
     end
   end
 
+  def new
+
+    @teacher = Teacher.includes(:videos, :courses).find(session[:teacher_id])
+    
+    render json: @teacher.to_json(:include => [:videos, :courses]), status: :ok    
+    
+  end
     
   private
     def teacher_params
-      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:teacher).permit(:first_name, :last_name, :email, :password, :password_confirmation, :bio)
+    end
+    def update_params
+      params.require(:teacher).permit(:bio)
     end
   
 end
