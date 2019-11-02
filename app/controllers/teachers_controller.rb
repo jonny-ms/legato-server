@@ -1,16 +1,9 @@
 class TeachersController < ApplicationController
 
   def index
-    # Send a list of all the teachrs
+    # Send a list of all the teachrs and their courses
     current_user
-    # p "current user"
-    # p current user
-    # p @current_user
-    # @teachers = Teacher.all
-    @teachers = Teacher.includes(:courses)
-    @teachers_join_courses = Teacher.joins(:courses)
-    p @teachers_join_courses
-    # p @teachers
+    @teachers = Teacher.includes(:courses).where(courses: {is_available: true})
     # render json: @teachers.to_json(:include => :courses), status: :ok
 
     render json: { teachers: @teachers.to_json(include: :courses), user: @current_user, type: @current_user.class.name}, status: :ok
@@ -21,7 +14,7 @@ class TeachersController < ApplicationController
     
     @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
 
-    @course = Course.where(teacher_id: params[:id], is_available: true)
+    @courses = Course.where(teacher_id: params[:id], is_available: true)
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
