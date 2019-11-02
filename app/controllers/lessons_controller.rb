@@ -45,7 +45,7 @@ class LessonsController < ApplicationController
     @timeslots = Timeslot.where(lesson_id: @lesson)
 
     @timeslots.each do |timeslot|
-      timeslot.update(lesson_id: nil)
+      timeslot.update(lesson_id: nil, is_booked: false)
     end
     
     @lesson.destroy
