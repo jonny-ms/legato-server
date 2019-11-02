@@ -18,14 +18,24 @@ class CoursesController < ApplicationController
     
   end
   
-  def destroy
+  def update
+
+    @course = Course.find(params[:id])
+
+    @lessons = Lesson.where(course_id: @course.id).select(:id).distinct
+
+    @timeslots = Timeslot.where(lesson_id: @lessons)
 
 
-    if Course.find(params[:id]).destroy
+    now = Time.current
 
-      render json: {status: 204}
-    else
+
+    future_lessons = @timeslots.where("datetime < ?", now)
+    if future_lessons
       render json: {status: 401}
+    else
+      @course.update(is_available: false)
+      render json: {status: 204}
     end
     
   end
