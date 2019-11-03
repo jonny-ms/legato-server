@@ -1,17 +1,9 @@
 class TeachersController < ApplicationController
 
   def index
-    # Send a list of all the teachrs
+    # Send a list of all the teachrs and their courses
     current_user
-    # p "current user"
-    # p current user
-    # p @current_user
-    # @teachers = Teacher.all
     @teachers = Teacher.includes(:courses, :videos).where(courses: {is_available: true})
-    @teachers_join_courses = Teacher.joins(:courses)
-    p @teachers_join_courses
-    # p @teachers
-    # render json: @teachers.to_json(:include => :courses), status: :ok
 
     render json: { teachers: @teachers.to_json(:include => [:courses, :videos]), user: @current_user, type: @current_user.class.name}, status: :ok
   end
@@ -25,11 +17,13 @@ class TeachersController < ApplicationController
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
+    @teachers = Teacher.where(id: params[:id])
+
     # @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
 
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
-    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots)}, status: :ok
+    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots), teachers: @teachers}, status: :ok
   end
 
   def update

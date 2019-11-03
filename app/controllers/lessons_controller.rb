@@ -8,9 +8,13 @@ class LessonsController < ApplicationController
     
     @courses = Course.where(id: @courseIds)
 
+    @teacherIds = @courses.select(:teacher_id).distinct
+
+    @teachers = Teacher.where(id: @teacherIds)
+
     @data = @lessons.to_json(include: :timeslots)
 
-    render json: { lessons: @data, courses: @courses }, status: :ok
+    render json: { lessons: @data, courses: @courses, teachers: @teachers }, status: :ok
   end
   
   
@@ -41,7 +45,7 @@ class LessonsController < ApplicationController
     @timeslots = Timeslot.where(lesson_id: @lesson)
 
     @timeslots.each do |timeslot|
-      timeslot.update(lesson_id: nil)
+      timeslot.update(lesson_id: nil, is_booked: false)
     end
     
     @lesson.destroy

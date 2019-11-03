@@ -14,7 +14,7 @@ teacher1 = Teacher.create!({
   password: "password",
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-UMAFDN7FT-8c1731cbdab2-512",
-  bio: "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before. Many say exploration is part of our destiny, but it’s actually our duty to future generations and their quest to ensure the survival of the human species.",
+  bio: "🎹 === ✅",
   address: {"street": "662 King St",
             "city": "Toronto",
             "country": "Canada"
@@ -97,6 +97,78 @@ teacher5 = Teacher.create!({
   will_travel: true
 })
 
+teacher6 = Teacher.create!({
+  first_name: "Barry",
+  last_name: "Bay",
+  email: "barry@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "https://i.giphy.com/media/6HOkD1pSCne4E/giphy.webp",
+  bio: "Bach. He my man.",
+  address: {"street": "100 King St W",
+            "city": "Toronto",
+            "country": "Canada"
+          },
+  postal_code: "M5X 2A2",
+  certifications: nil,
+  will_host: true,
+  will_travel: false
+})
+
+teacher7 = Teacher.create!({
+  first_name: "Mr",
+  last_name: "Bean",
+  email: "bean@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "http://giphygifs.s3.amazonaws.com/media/mFdnWF1RTI7fi/giphy.gif",
+  bio: "Where's my teddy?",
+  address: {"street": "3040 Universal Dr",
+            "city": "Mississauga",
+            "country": "Canada"
+          },
+  postal_code: "L4X 2C8",
+  certifications: nil,
+  will_host: true,
+  will_travel: true
+})
+
+teacher8 = Teacher.create!({
+  first_name: "Ryan",
+  last_name: "Reynnolds",
+  email: "ryan@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "https://media.giphy.com/media/QYaA5uJvqH7Ow/giphy.gif",
+  bio: "I'm Deadpool",
+  address: {"street": "100 Wynford Dr",
+            "city": "North York",
+            "country": "Canada"
+          },
+  postal_code: "M3C 484",
+  certifications: nil,
+  will_host: false,
+  will_travel: true
+})
+
+teacher9 = Teacher.create!({
+  first_name: "Nick",
+  last_name: "Offerman",
+  email: "nick@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  profile_pic: "https://media.giphy.com/media/44b1ABtsG7VTy/giphy.gif",
+  bio: "Whiskey and my double bass.",
+  address: {"street": "1 Brimley Rd S",
+            "city": "Scarborough",
+            "country": "Canada"
+          },
+  postal_code: "M1M 3W3",
+  certifications: nil,
+  will_host: true,
+  will_travel: false
+})
+
 
 student1 = Student.create!({
   first_name: "Steve",
@@ -154,4 +226,32 @@ course6 = Course.create!({
   instrument: "Percussion",
   level: "Intermediate",
   rate: 65
+})
+
+course7 = Course.create!({
+  teacher_id: 6,
+  instrument: "Harp",
+  level: "Advance",
+  rate: 104
+})
+
+course8 = Course.create!({
+  teacher_id: 7,
+  instrument: "Oboe",
+  level: "Beginner",
+  rate: 85
+})
+
+course9 = Course.create!({
+  teacher_id: 8,
+  instrument: "Violin",
+  level: "Beginner",
+  rate: 94
+})
+
+course10 = Course.create!({
+  teacher_id: 9,
+  instrument: "Double bass",
+  level: "Intermediate",
+  rate: 110
 })
