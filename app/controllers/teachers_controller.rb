@@ -7,13 +7,13 @@ class TeachersController < ApplicationController
     # p current user
     # p @current_user
     # @teachers = Teacher.all
-    @teachers = Teacher.includes(:courses)
+    @teachers = Teacher.includes(:courses, :videos).where(courses: {is_available: true})
     @teachers_join_courses = Teacher.joins(:courses)
     p @teachers_join_courses
     # p @teachers
     # render json: @teachers.to_json(:include => :courses), status: :ok
 
-    render json: { teachers: @teachers.to_json(include: :courses), user: @current_user, type: @current_user.class.name}, status: :ok
+    render json: { teachers: @teachers.to_json(:include => [:courses, :videos]), user: @current_user, type: @current_user.class.name}, status: :ok
   end
 
   def show
@@ -21,7 +21,7 @@ class TeachersController < ApplicationController
     
     @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
 
-    @course = Course.where(teacher_id: params[:id], is_available: true)
+    @courses = Course.where(teacher_id: params[:id], is_available: true)
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
