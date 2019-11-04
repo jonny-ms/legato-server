@@ -19,13 +19,15 @@ class TeachersController < ApplicationController
   def show
     # Send a specific teacher's calendar
     
-    @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
+    # @timeslots = Timeslot.where(teacher_id: params[:id], lesson_id: nil)
+    @timeslots = Timeslot.where(teacher_id: params[:id])
 
     @course = Course.where(teacher_id: params[:id], is_available: true)
 
     @lessons = Lesson.includes(:timeslots).where(student_id: session[:student_id])
 
     @teachers = Teacher.where(id: params[:id])
+
 
     puts @teachers
 
