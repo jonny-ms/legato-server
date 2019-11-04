@@ -37,6 +37,7 @@ class CoursesController < ApplicationController
     if future_lessons.length > 0
       render json: {status: 401}
     else
+
       @course.update(is_available: false)
       render json: {status: 204}
     end
