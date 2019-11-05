@@ -30,14 +30,21 @@ class LessonsController < ApplicationController
   end
 
   def update
-    p params
-    @lesson = Lesson.find(params[:id])
 
-    @timeslots = Timeslot.where(lesson_id: @lesson)
+      @lesson = Lesson.find(params[:id])
 
-    p @timeslots
+    if params[:has_paid]
+      @lesson.update(has_paid: true)
+      p @lesson
+    else
 
-    @timeslots.update(is_booked: true)
+      @timeslots = Timeslot.where(lesson_id: @lesson)
+  
+      @timeslots.update(is_booked: true)
+
+    end
+ 
+
   end
 
   def destroy
@@ -54,7 +61,7 @@ class LessonsController < ApplicationController
     
   private
     def lesson_params
-      params.require(:lesson).permit(:course_id, timeslots: [])
+      params.require(:lesson).permit(:course_id, :has_paid, timeslots: [])
     end
   
 end
