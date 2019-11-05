@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
 
     future_lessons = @timeslots.where("datetime > ?", now)
     if future_lessons.length > 0
-      render json: {status: 401}
+      render json: { course: @course, status: 401}
     else
 
       @course.update(is_available: false)
