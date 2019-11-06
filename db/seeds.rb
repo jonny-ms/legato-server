@@ -14,7 +14,8 @@ teacher1 = Teacher.create!({
   password: "password",
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-UMAFDN7FT-8c1731cbdab2-512",
-  bio: "🎹 === ✅",
+  bio: "",
+  tagline: "🎹 === ✅",
   address: {"street": "662 King St",
             "city": "Toronto",
             "country": "Canada"
@@ -33,6 +34,7 @@ teacher2 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULWDQ3T16-d7f919b5529f-512",
   bio: "Oh hai. You me teach?! I teach you.",
+  tagline: "Jazz flute is the epitome of expression.",
   address: {"street": "443 Stonecourt Crescent",
             "city": "Mississauga",
             "country": "Canada"
@@ -50,7 +52,8 @@ teacher3 = Teacher.create!({
   password: "password",
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULV0WR0RJ-d3d1fbc800a9-512",
-  bio: "Oh hai. I'm a flautist.",
+  bio: "",
+  tagline: "BADUM TSSS!",
   address: {"street": "487 Pettit Trail",
             "city": "Milton",
             "country": "Canada"
@@ -69,6 +72,7 @@ teacher4 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULJU2F3CK-829836c2c0eb-512",
   bio: "World renowned opera singer.",
+  tagline: "Let's Do Re Mi together!",
   address: {"street": "157 Dundas St W",
             "city": "Toronto",
             "country": "Canada"
@@ -87,6 +91,7 @@ teacher5 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "https://ca.slack-edge.com/T2G8TE2E5-ULUSMV18C-63b9a3c88c13-512",
   bio: "Grammy award triangle player, worked on projects with Michael Jackson and Diana Ross",
+  tagline: "I like my triangle. I'll help you like yours.",
   address: {"street": "109 McCaul St",
             "city": "Toronto",
             "country": "Canada"
@@ -105,6 +110,7 @@ teacher6 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "https://i.giphy.com/media/6HOkD1pSCne4E/giphy.webp",
   bio: "Bach. He my man.",
+  tagline: "Bach. He still my man.",
   address: {"street": "100 King St W",
             "city": "Toronto",
             "country": "Canada"
@@ -123,6 +129,7 @@ teacher7 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "http://giphygifs.s3.amazonaws.com/media/mFdnWF1RTI7fi/giphy.gif",
   bio: "Where's my teddy?",
+  tagline: "Wow. Wow. Wow.",
   address: {"street": "3040 Universal Dr",
             "city": "Mississauga",
             "country": "Canada"
@@ -141,6 +148,7 @@ teacher8 = Teacher.create!({
   password_confirmation: "password",
   profile_pic: "https://media.giphy.com/media/QYaA5uJvqH7Ow/giphy.gif",
   bio: "I'm Deadpool",
+  tagline: "I swear, by the moon and stars I'll make you a star.",
   address: {"street": "100 Wynford Dr",
             "city": "North York",
             "country": "Canada"
@@ -158,6 +166,7 @@ teacher9 = Teacher.create!({
   password: "password",
   password_confirmation: "password",
   profile_pic: "https://media.giphy.com/media/44b1ABtsG7VTy/giphy.gif",
+  tagline: "I'll walk that bass ANYWHERE.",
   bio: "Whiskey and my double bass.",
   address: {"street": "1 Brimley Rd S",
             "city": "Scarborough",
@@ -254,4 +263,32 @@ course10 = Course.create!({
   instrument: "Double bass",
   level: "Intermediate",
   rate: 110
+})
+
+course11 = Course.create!({
+  teacher_id: 2,
+  instrument: "Flute",
+  level: "Advance",
+  rate: 115
+})
+
+course12 = Course.create!({
+  teacher_id: 2,
+  instrument: "Oboe",
+  level: "Beginner",
+  rate: 105
+})
+
+course13 = Course.create!({
+  teacher_id: 2,
+  instrument: "Saxophone",
+  level: "Beginner",
+  rate: 85
+})
+
+course14 = Course.create!({
+  teacher_id: 2,
+  instrument: "French horn",
+  level: "Beginner",
+  rate: 94
 })
