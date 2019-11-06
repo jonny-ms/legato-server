@@ -20,11 +20,12 @@ class TeachersController < ApplicationController
     @teachers = Teacher.where(id: params[:id])
 
     @videos = Video.where(teacher_id: params[:id])
+    
     # @mylessons = Lesson.where(student_id: session[:student_id]).pluck(:id)
 
     # @lessons = Timeslot.where(lesson_id: @mylessons)
 
-    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots), teachers: @teachers}, status: :ok
+    render json: { timeslots: @timeslots, courses: @courses, lessons: @lessons.to_json(include: :timeslots), teachers: @teachers, video: @videos}, status: :ok
   end
 
   def update
