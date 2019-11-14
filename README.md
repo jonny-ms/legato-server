@@ -1,32 +1,40 @@
-# README
+# Legato-API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Lighthouse Labs final project. <br> Contributors: [Aaron Tagadtad](https://github.com/atagadtad), [Cameron Dunning](https://github.com/CameronDunning), [Jonathan Milne-Skarzenski](https://github.com/jonny-ms)
 
-Things you may want to cover:
+## Description
 
-- Ruby version
+Project description can be found in client-side repo: https://github.com/jonny-ms/legato-client.
 
-- System dependencies
+## Setup
 
-- Configuration
+This project requires the following versions:
 
-- Database creation
+- Ruby 2.6.5
+- Rails 6.0.0
+- PostgreSQL >= 9.3
 
-- Database initialization
+Clone repo:
 
-- How to run the test suite
+```sh
+  git clone git@github.com:jonny-ms/legato-server.git
+```
 
-- Services (job queues, cache servers, search engines, etc.)
+Install dependencies:
+```sh
+  bundle install
+```
 
-- Deployment instructions
+Create postgresql database, run migrations, and seed some test data:
+```sh
+  rake db:create
+  rake db:migrate
+  rake db:seed
+```
 
-- ...
+Run server:
+```sh
+  rails s
+``` 
 
-Cam-small change
-
-## To reset database, run:
-
-rake db:migrate VERSION=0
-rake db:migrate
-rake db:seed
+Note that the default TCP ports are set to 3000 for client-side and 3001 for server-side. If using a different port on the client-side, you will need to set need origins for CORS configs in `config/application.rb`.
